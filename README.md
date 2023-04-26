@@ -3,4 +3,4 @@
 
 - Создаем (при необходимости) и входим в виртуальное окружение
 - 'pip install -r requirements.txt' - Подгружаем необходимые библиотеки, содержащиеся в файле requirements.txt
-- 
+- 'python manage.py runserver' - Запуск сервера
