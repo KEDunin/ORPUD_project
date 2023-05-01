@@ -9,4 +9,5 @@ class Iphone(models.Model):
     color = models.CharField(max_length=30)
     memory = models.CharField(max_length=30)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    price = models.IntegerField(null=True)
 
