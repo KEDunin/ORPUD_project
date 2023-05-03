@@ -1,4 +1,6 @@
 from django.db import models
+
+
 class Shop(models.Model):
     name = models.CharField(max_length=50)
 
@@ -10,4 +12,3 @@ class Iphone(models.Model):
     memory = models.CharField(max_length=30)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.IntegerField(null=True)
-
