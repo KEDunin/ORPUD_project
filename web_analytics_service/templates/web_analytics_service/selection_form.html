@@ -1,0 +1,13 @@
+{% extends 'web_analytics_service/main.html' %}
+
+{% block cont1 %}
+    <form action="" method="get">
+        <b>Фильтры</b>
+        <br>
+        {% for field in filter %}
+            {{field.label}}
+            {{field}}
+        {% endfor %}
+        <button>Найти</button>
+    </form>
+{% endblock cont1 %}

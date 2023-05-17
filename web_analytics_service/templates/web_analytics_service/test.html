@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="get">
+        <b>Фильтры</b>
+        <br>
+        {% for field in filter %}
+            {{field.label}}
+            {{field}}
+        {% endfor %}
+        <button>Найти</button>
+    </form>
+    <hr>
+    <select name="choice1">
+        <option selected disabled="true">Номер</option>
+        {% for item in range %}
+        <option>{{item.number}}</option>
+        {% endfor %}
+    </select>
+    <select name="choice2">
+        <option selected disabled="true">Модель</option>
+        {% for item in range %}
+        <option>{{item.model}}</option>
+        {% endfor %}
+    </select>
+    <select name="choice3">
+        <option selected disabled="true">Цвет</option>
+        {% for item in range %}
+        <option>{{item.color}}</option>
+        {% endfor %}
+    </select>
+    <select name="choice4">
+        <option selected disabled="true">Цена</option>
+        {% for item in range %}
+        <option>{{item.price}}</option>
+        {% endfor %}
+    </select>
+    <div style="height:100px"></div>
+    {% for item in range %}
+    <div>
+        <div class="block" style="border:solid 1px; width:150px; padding:5px; ">
+        <div>Номер:{{item.number}}</div>
+        <div>Модификация:{{item.model}}</div>
+        <div>Цвет:{{item.color}}</div>
+        <div>Память:{{item.memory}} ГБ</div>
+        <div>Цена:{{item.price}} руб.</div>
+        </div>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
