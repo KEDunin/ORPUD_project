@@ -18,16 +18,16 @@ def main_view(request):
     filters = filter.cleaned_data
     print(filters)
 
-    if filters['number']:
+    if filters:
         value = value.filter(number=filters['number'])
 
-    if filters['model']:
+    if filters:
         value = value.filter(model=filters['model'])
 
-    if filters['color']:
+    if filters:
         value = value.filter(color=filters['color'])
 
-    if filters['memory']:
+    if filters:
         value = value.filter(memory=filters['memory'])
 
     return render(request, 'web_analytics_service/main.html', {
