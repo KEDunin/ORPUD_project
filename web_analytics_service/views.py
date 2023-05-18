@@ -12,14 +12,25 @@ def preview_view(request):
 
 def main_view(request):
     value = Iphone.objects.all()
+    shop = None
 
     filter = FilterForm(request.GET)
     filter.is_valid()
     filters = filter.cleaned_data
     print(filters)
 
+    if filters['shop_id'] == '1':
+        shop = "Wildberries"
+
+    if filters['shop_id'] == '2':
+        shop = "Ozon"
+
+    if filters['shop_id'] == '3':
+        shop = "Yandex market"
+
+
     if filters:
-        value = value.filter(number=filters['number'])
+        value = value.filter(shop_id=filters['shop_id'])
 
     if filters:
         value = value.filter(model=filters['model'])
@@ -31,6 +42,7 @@ def main_view(request):
         value = value.filter(memory=filters['memory'])
 
     return render(request, 'web_analytics_service/main.html', {
+        "shop": shop,
         "range": value,
         "filter": filter
     })

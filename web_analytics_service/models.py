@@ -6,9 +6,8 @@ class Shop(models.Model):
 
 
 class Iphone(models.Model):
-    number = models.IntegerField()
-    model = models.CharField(max_length=30, null=True)
+    model = models.CharField(max_length=50)
     color = models.CharField(max_length=30)
-    memory = models.CharField(max_length=30)
+    memory = models.IntegerField()
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.IntegerField()

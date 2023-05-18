@@ -19,18 +19,18 @@ class RegistrationForm(forms.ModelForm):
 
 
 class FilterForm(forms.Form):
-    number = forms.ChoiceField(
+    shop_id = forms.ChoiceField(
         choices=(
-            ('12', '12'),
-            ('13', '13'),
-            ('14', '14')
+            ('1', 'Wildberries'),
+            ('2', 'Ozon'),
+            ('3', 'Yandex Market')
         )
     )
     model = forms.ChoiceField(
         choices=(
-            ('None', '-'),
-            ('Pro', 'Pro'),
-            ('Pro Max', 'Pro Max')
+            ('12 mini', '12 mini'),
+            ('13 Pro Max', '13 Pro Max'),
+            ('13', '13')
         )
     )
     color = forms.ChoiceField(
