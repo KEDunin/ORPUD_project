@@ -4,7 +4,6 @@ from django.urls import path
 from web_analytics_service.views import main_view, preview_view, registration_view
 
 urlpatterns = [
-    path('', preview_view),
-    path('main/', main_view, name='main'),
+    path('', main_view, name='main'),
     path('registration/', registration_view)
 ]
