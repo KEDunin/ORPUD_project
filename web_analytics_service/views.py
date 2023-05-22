@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
-from web_analytics_service.forms import RegistrationForm
+from web_analytics_service.forms import RegistrationForm, FilterForm
+from web_analytics_service.models import Iphone
 
 User = get_user_model()
 
@@ -10,7 +11,43 @@ def preview_view(request):
 
 
 def main_view(request):
-    return render(request, 'web_analytics_service/main.html')
+    value = Iphone.objects.all()
+    shop = None
+
+    filter = FilterForm(request.GET)
+    filter.is_valid()
+    filters = filter.cleaned_data
+    print(filters)
+
+    if filters:
+        if filters['shop_id'] == '1':
+            shop = "Wildberries"
+
+        elif filters['shop_id'] == '2':
+            shop = "Ozon"
+
+        elif filters['shop_id'] == '3':
+            shop = "Yandex market"
+
+
+    if filters:
+        value = value.filter(shop_id=filters['shop_id'])
+
+    if filters:
+        value = value.filter(model=filters['model'])
+
+    if filters:
+        value = value.filter(color=filters['color'])
+
+    if filters:
+        value = value.filter(memory=filters['memory'])
+
+    return render(request, 'web_analytics_service/main.html', {
+        "shop": shop,
+        "range": value,
+        "filter": filter
+    })
+
 
 
 def registration_view(request):
