@@ -19,14 +19,15 @@ def main_view(request):
     filters = filter.cleaned_data
     print(filters)
 
-    if filters['shop_id'] == '1':
-        shop = "Wildberries"
+    if filters:
+        if filters['shop_id'] == '1':
+            shop = "Wildberries"
 
-    if filters['shop_id'] == '2':
-        shop = "Ozon"
+        elif filters['shop_id'] == '2':
+            shop = "Ozon"
 
-    if filters['shop_id'] == '3':
-        shop = "Yandex market"
+        elif filters['shop_id'] == '3':
+            shop = "Yandex market"
 
 
     if filters:
