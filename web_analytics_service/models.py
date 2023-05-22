@@ -12,3 +12,4 @@ class Iphone(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.IntegerField()
     date = models.DateTimeField()
+    link = models.CharField(max_length=1000)
