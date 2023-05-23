@@ -1,7 +1,0 @@
-.fruits > div {
-  display: none;
-}
-
-.fruits > div.visible {
-  display: block;
-}

@@ -16,3 +16,34 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'username', 'password1', 'password2')
+
+
+class FilterForm(forms.Form):
+    shop_id = forms.ChoiceField(
+        choices=(
+            ('1', 'Wildberries'),
+            ('2', 'Ozon'),
+            ('3', 'Yandex Market')
+        )
+    )
+    model = forms.ChoiceField(
+        choices=(
+            ('12 mini', '12 mini'),
+            ('13 Pro Max', '13 Pro Max'),
+            ('13', '13')
+        )
+    )
+    color = forms.ChoiceField(
+        choices=(
+            ('black', 'black'),
+            ('green', 'green'),
+            ('blue', 'blue')
+        )
+    )
+    memory = forms.ChoiceField(
+        choices=(
+            ('128', '128'),
+            ('256', '256'),
+            ('512', '512')
+        )
+    )
