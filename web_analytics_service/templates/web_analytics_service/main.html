@@ -215,14 +215,17 @@
                         </div>
                         <div class="col-lg-8">
                             <div style="color:gray"><i>Если не выводится ничего, проверьте корректность введенных данных, возможно, такого товара сейчас нет в наличии в данном магазине</i></div>
-                            <div style="width:700px; height:400px; border:1px solid black">
-                                {% for item in range %}
-                                <div class="block" style="border:solid 1px; width:150px; padding:5px; ">
-                                <div>Модель:{{item.model}}</div>
-                                <div>Цвет:{{item.color}}</div>
-                                <div>Память:{{item.memory}} ГБ</div>
-                                <div>Магазин:{{shop}}</div>
-                                <div>Цена:{{item.price}} руб.</div>
+                            <div style="width:700px; height:400px; border:1px solid black; overflow:auto">
+                                {% for item in list_of_filtered_obj %}
+                                <div style="display:flex">
+                                    <div style="float, width:40%"><img src="{{item.link}}" style="height:250px; margin:10px"></img></div>
+                                    <div style="float:rit; width:60%; height:350px; border: solid 1px; margin:10px; justify-content: center">
+                                        <div>Модель:{{item.model}}</div>
+                                        <div>Цвет:{{item.color}}</div>
+                                        <div>Память:{{item.memory}} ГБ</div>
+                                        <div>Магазин:{{shop}}</div>
+                                        <div>Цена:{{item.price}} руб.</div>
+                                    </div>
                                 </div>
                                 {% endfor %}
                             </div>

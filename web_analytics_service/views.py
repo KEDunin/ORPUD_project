@@ -12,6 +12,7 @@ def preview_view(request):
 
 def main_view(request):
     value = Iphone.objects.all()
+    value_2 = None
     shop = None
 
     filter = FilterForm(request.GET)
@@ -21,7 +22,7 @@ def main_view(request):
 
     if filters:
         if filters['shop_id'] == '1':
-            shop = "Wildberries"
+            shop = "DNS"
 
         elif filters['shop_id'] == '2':
             shop = "Ozon"
@@ -42,9 +43,15 @@ def main_view(request):
     if filters:
         value = value.filter(memory=filters['memory'])
 
+    value = value.filter(date_id='7')
+
+    if filters:
+        value_2 = value
+
     return render(request, 'web_analytics_service/main.html', {
         "shop": shop,
         "range": value,
+        "list_of_filtered_obj": value_2,
         "filter": filter
     })
 
