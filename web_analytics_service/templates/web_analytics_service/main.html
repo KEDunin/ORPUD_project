@@ -120,6 +120,34 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'web_analytics_service/css/styles.css' %}" rel="stylesheet" />
         <link rel="stylesheet" href="{% static 'web_analytics_service/css/button.cs' %}" />
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                            <script type="text/javascript">
+                                              google.charts.load('current', {'packages':['corechart']});
+                                              google.charts.setOnLoadCallback(drawChart);
+
+                                              function drawChart() {
+                                                var data = google.visualization.arrayToDataTable([
+                                                  ['Year', 'Sales'],
+                                                  ['20 мая',  {% for i in day1 %}{{i.price}}{% endfor %}],
+                                                  ['21 мая',  {% for i in day2 %}{{i.price}}{% endfor %}],
+                                                  ['22 мая',  {% for i in day3 %}{{i.price}}{% endfor %}],
+                                                  ['23 мая',  {% for i in day4 %}{{i.price}}{% endfor %}],
+                                                  ['24 мая',  {% for i in day5 %}{{i.price}}{% endfor %}],
+                                                  ['25 мая',  {% for i in day6 %}{{i.price}}{% endfor %}],
+                                                  ['26 мая',  {% for i in day7 %}{{i.price}}{% endfor %}]
+                                                ]);
+
+                                                var options = {
+                                                  title: 'Company Performance',
+                                                  curveType: 'function',
+                                                  legend: { position: 'bottom' }
+                                                };
+
+                                                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                                                chart.draw(data, options);
+                                              }
+                                            </script>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -219,13 +247,7 @@
                                 {% for item in list_of_filtered_obj %}
                                 <div style="display:flex">
                                     <div style="float, width:40%"><img src="{{item.link}}" style="height:250px; margin:10px"></img></div>
-                                    <div style="float:rit; width:60%; height:350px; border: solid 1px; margin:10px; justify-content: center">
-                                        <div>Модель:{{item.model}}</div>
-                                        <div>Цвет:{{item.color}}</div>
-                                        <div>Память:{{item.memory}} ГБ</div>
-                                        <div>Магазин:{{shop}}</div>
-                                        <div>Цена:{{item.price}} руб.</div>
-                                    </div>
+                                    <div style="float:rit; width:60%; height:350px; border: solid 1px; margin:10px; justify-content: center" id="curve_chart"></div>
                                 </div>
                                 {% endfor %}
                             </div>
