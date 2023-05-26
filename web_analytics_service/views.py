@@ -87,22 +87,3 @@ def registration_view(request):
             is_success = True
     return render(request, 'web_analytics_service/registration.html',
                   {'form': form, 'is_success': is_success})
-
-
-def graph_view(request):
-    value = Iphone.objects.all()
-
-    value = value.filter(model='14', color='красный', memory='128')
-
-    day1 = value.filter(date_id=1)
-    day2 = value.filter(date_id=2)
-    day3 = value.filter(date_id=3)
-    day4 = value.filter(date_id=4)
-    return render(request, 'web_analytics_service/graph.html', {
-        "day1": day1,
-        "day2": day2,
-        "day3": day3,
-        "day4": day4,
-        "value": value
-    })
-

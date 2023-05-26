@@ -5,6 +5,5 @@ from web_analytics_service.views import main_view, preview_view, registration_vi
 
 urlpatterns = [
     path('', main_view, name='main'),
-    path('registration/', registration_view),
-    path('graph/', graph_view)
+    path('registration/', registration_view)
 ]
