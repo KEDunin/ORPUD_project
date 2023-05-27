@@ -6,33 +6,29 @@ from web_analytics_service.models import Iphone
 User = get_user_model()
 
 
-def preview_view(request):
-    return render(request, 'web_analytics_service/preview.html')
-
-
 def main_view(request):
-    value = Iphone.objects.all()
-    value_2 = None
+    value = Iphone.objects.all()  # контейнер, в котором содержатся все объекты, содержащиеся в таблице web_analytics_service_iphone
+    value_2 = None  # контейнер, в котором содержатся объекты из основного контейнера, но соответствующие условиям, переданным в форму ввода,
     shop = None
 
     filter = FilterForm(request.GET)
     filter.is_valid()
     filters = filter.cleaned_data
-    print(filters)
 
+    # вывод названия магазина, в зависимости от полученного входного параметра shop, введенного пользователем
     if filters:
-        if filters['shop_id'] == '1':
+        if filters['shop'] == '1':
             shop = "DNS"
 
-        elif filters['shop_id'] == '2':
+        elif filters['shop'] == '2':
             shop = "Ozon"
 
-        elif filters['shop_id'] == '3':
+        elif filters['shop'] == '3':
             shop = "Yandex market"
 
-
+    # фильтрация объектов
     if filters:
-        value = value.filter(shop_id=filters['shop_id'])
+        value = value.filter(shop_id=filters['shop'])
 
     if filters:
         value = value.filter(model=filters['model'])
@@ -43,6 +39,7 @@ def main_view(request):
     if filters:
         value = value.filter(memory=filters['memory'])
 
+    # фильтрация по дате сбора данных с сайтов интернет-магазинов
     day1 = value.filter(date_id=1)
     day2 = value.filter(date_id=2)
     day3 = value.filter(date_id=3)
@@ -51,9 +48,9 @@ def main_view(request):
     day6 = value.filter(date_id=6)
     day7 = value.filter(date_id=7)
 
-
     value = value.filter(date_id='7')
 
+    # передача полученных значений в доп. контейнер для отображения содержащихся в нем объектов в форму вывода, в случае если пользователь ввел некоторые данные в форму ввода
     if filters:
         value_2 = value
 
@@ -72,10 +69,9 @@ def main_view(request):
     })
 
 
-
 def registration_view(request):
     form = RegistrationForm()
-    is_success = False
+    is_success = False  # флаг для отображения на странице сообщения в случае, если он равен True (если данные валидны)
     if request.method == "POST":
         form = RegistrationForm(data=request.POST)
         if form.is_valid():

@@ -1,5 +1,6 @@
 import os
 import csv
+import sys
 import time
 import re
 import pickle
@@ -141,6 +142,8 @@ def get_products(structure, page_count='all'):
 
   if HEADLESS:
     optns.add_argument('--headless')
+
+  optns.add_argument('--disable-blink-features=AutomationControlled')
 
   srvc = webdriver.firefox.service.Service(executable_path=DRIVER_PATH + platform_postfix(), log_path=os.devnull)
   drvr = webdriver.Firefox(service=srvc, options=optns)

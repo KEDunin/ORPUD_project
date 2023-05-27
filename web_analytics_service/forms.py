@@ -19,7 +19,7 @@ class RegistrationForm(forms.ModelForm):
 
 
 class FilterForm(forms.Form):
-    shop_id = forms.ChoiceField(
+    shop = forms.ChoiceField(
         choices=(
             ('1', 'DNS'),
             ('2', 'Ozon'),
